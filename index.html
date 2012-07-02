@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Plugin popUp</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="jQuery.qxModal.js"></script>
+<script type="text/javascript">
+jQuery(function () {
+    /* PopUp aberto sem click */
+    jQuery().qxPopUp({
+        title: 'Título do popup',
+        content: "<p>Os popups não precisam, obrigatoriamente, estar atrelados a algum link ou outro elemento. Podem ser aberto a qualquer hora.</p> \
+            <p>Dica: Você pode fechar um popUp apertando ESC ou ENTER.</p>"
+    });
+
+    /* PopUp Simples */
+    jQuery("a.abrir-popup").qxPopUp({
+        text: "Você pode passar apenas um texto simples para popUps de aviso, por exemplo."
+    });
+
+    /* PopUp com conteúdo html */
+    jQuery("a.abrir-popup2").qxPopUp({
+        title: 'Título do popup',
+        content: "<p>Você pode incluir qualquer HTML dentro do conteúdo do seu <strong>popUp</strong>.</p>"
+    });
+
+    /* PopUp com botões personalizados */
+    jQuery("a.abrir-popup3").qxPopUp({
+        type: 'confirm',
+        title: 'Título do popup',
+        content: "<p>Você também pode escolher o label dos botões e adicionar callbacks para a ação de click de cada um.</p>",
+        oklabel: 'Ok, concordo',
+        cancellabel: 'Não concordo',
+        popclosetext: 'x',
+        okaction: function(){
+            alert('Você aceitou');
+            jQuery().qxPopUp('close');
+        },
+        cancelaction: function(){
+            alert('Que pena :(');
+            jQuery().qxPopUp('close');
+        },
+        closeaction: function(){
+            var conf = confirm('Tem certeza que deseja fechar o popUp?');
+            if(conf)
+                jQuery().qxPopUp('close');
+            else
+                return false;
+        }
+    });
+
+    /* PopUp com botões avançado */
+    jQuery("a.abrir-popup4").qxPopUp({
+        type: '',
+        title: 'Título do popup',
+        content: "<p>Se for necessário você poderá criar outros botões que não fazem parte do padrão do popUp. <br /> Você define as classes, texto e ações dos botões.</p>",
+        buttons: [
+            {
+                newclass: 'btn-ola',
+                name: 'Olá!',
+                action: function(){
+                    jQuery().qxPopUp({
+                        type: 'confirm',
+                        title: 'Pergunta:',
+                        text: 'Tudo bem com você?',
+                        oklabel: 'Tudo',
+                        cancellabel: 'Bad day'
+                    });
+                }
+            }
+        ]
+    });
+
+    /* PopUp com ajax via JS */
+    jQuery("a.abrir-popup5").qxPopUp({
+        title: 'Título',
+        ajax: 'conteudo-popUp.html',
+        ajaxmethod: 'GET',
+        ajaxerrorcontent: '<p>Ops! Algum erro ocorreu com sua requisição<p/>',
+        ajaxerroraction: function(jqXHR, textStatus, errorThrown){
+            alert('Deu erro no servidor');
+        },
+        ajaxdata: {'dadosparaajax':'true'}
+    });
+
+    /* PopUp com ajax via URL */
+    jQuery("a.abrir-popup6").qxPopUp({
+        title: 'Título',
+        ajaxmethod: 'GET',
+        ajaxerrorcontent: '<p>Ops! Algum erro ocorreu com sua requisição<p/>',
+        ajaxerroraction: function(jqXHR, textStatus, errorThrown){
+            alert('Deu erro no servidor');
+        },
+        ajaxdata: {'dadosparaajax':'true'}
+    });
+
+
+    /* PopUp flexível */
+    jQuery("a.abrir-popup7").qxPopUp({
+        title: 'Título',
+        content: '<div id="randomDiv" style="width: 5000px; height: 500px;">Esta div é gigante; <a href="#" id="randomTest">RANDOM</a></div>',
+        calconchange: true
+    }, function(){
+        $('#randomTest').bind('click', function(event) {
+            $('#randomDiv').width(Math.random() * 10000).height(Math.random() * 10000);
+            event.preventDefault();
+        });
+
+        $('body').keypress(function (event) {
+            if (event.keyCode == 114) {
+                $('#randomTest').trigger('click');
+            }
+        });
+    });
+});
+</script>
+
+<body>
+<div class="content" style="text-align:center;">
+	<a href="#" class="abrir-popup">PopUp simples</a>
+    <br /><br />
+    <a href="#" class="abrir-popup2">PopUp com conteúdo html</a>
+    <br /><br />
+    <a href="#" class="abrir-popup3">PopUp com botões personalizados</a>
+    <br /><br />
+    <a href="#" class="abrir-popup4">PopUp com botões avançado</a>
+    <br /><br />
+    <a href="#" class="abrir-popup5">PopUp com ajax via JS</a>
+    <br /><br />
+    <a href="conteudo-popUp.html" class="abrir-popup6">PopUp com ajax via URL</a>
+    <br /><br />
+    <a href="#" class="abrir-popup7">PopUp flexível</a>
+</div>
+</body>
+</html>

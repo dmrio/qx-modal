@@ -1,0 +1,24 @@
+body{font-family:Arial, Helvetica, sans-serif; font-size:11px;}
+a{display:inline-block;border:1px solid #c1c1c1;border-radius:5px;padding:2px 10px;color:#555;text-decoration:none;font-size:12px;text-transform:uppercase;font-weight:bold;
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#cccccc'); /* for IE */
+background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ccc)); /* for webkit browsers */
+background: -moz-linear-gradient(top,  #fff,  #ccc); /* for firefox 3.6+ */}
+a:hover{filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cccccc', endColorstr='#ffffff'); /* for IE */
+background: -webkit-gradient(linear, left top, left bottom, from(#ccc), to(#fff)); /* for webkit browsers */
+background: -moz-linear-gradient(top,  #ccc,  #fff); /* for firefox 3.6+ */ }
+
+/* Estilo obrigatório */
+.qx-popUp-content {overflow:auto;}
+
+
+
+/* Outros estilos */
+#qx-Blackout {background:rgba(0, 0, 0, 0.5);}
+.qx-popUp {margin:0 auto;border:1px solid #E6E2DF;border-radius:5px;-moz-border-radius:5px;position:absolute;background:#F2F0EE;z-index:2;}
+.qx-popUp-header {background: none repeat scroll 0 0 #F2F0EE;border-bottom:2px solid #fff;padding:12px;position:relative; height:20px;}
+.qx-popUp-header h2 {color:#000;font-size:16px;margin:0 12px 0 0;}
+.qx-popUp-options{float:right;}
+.qx-popUp-content {padding:12px;color:#55544F;}
+.qx-popUp-footer {padding:12px;text-align:right;border-top:2px solid #fff;}
+.qx-popUp-footer a{margin-left:5px;}
+
